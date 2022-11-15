@@ -115,6 +115,7 @@ body {
     gap: 50px;
 }
 .nav-site-item {
+    position: relative;
 }
 
 .nav-site-link {
@@ -129,13 +130,22 @@ body {
 }
 
 .nav-site-link:hover,
-.nav-site-link:focus,
-.nav-site-link:active {
+.nav-site-link:focus {
     color: var(--second-link-color);
 }
 
 .current {
-    color: var(--second-link-color);
+    
+}
+.current::after {
+    position: absolute;
+    content: '';
+    height: 4px;
+    width: 100%;
+    display: block;
+    background-color: var(--second-link-color);
+    border-radius: 2px;
+    bottom: 0;
 }
 
 .header-contacts-list {
