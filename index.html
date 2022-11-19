@@ -18,6 +18,10 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
 
@@ -68,11 +72,13 @@
       <!--Hero-->
       <section class="hero">
         <div class="container container-hero">
-          <h1 class="hero-title">
+          <h1 class="hero-title animate__animated animate__zoomIn">
             Ефективні рішення для<br />
             вашого бізнесу
           </h1>
-          <button class="hero-btn btn" type="button">Замовити послугу</button>
+          <button class="hero-btn btn" type="button" data-modal-open>
+            Замовити послугу
+          </button>
         </div>
       </section>
 
@@ -146,6 +152,7 @@
                 alt="Розробник створює код"
                 width="370"
               />
+              <p class="works-top-text">Десктопні додатки</p>
             </li>
             <li class="works-item">
               <img
@@ -153,6 +160,7 @@
                 alt="Розробник створює адаптивну версію для смартфону"
                 width="370"
               />
+              <p class="works-top-text">Мобільні додатки</p>
             </li>
             <li class="works-item">
               <img
@@ -160,6 +168,7 @@
                 alt="Розробник створює дизайн сайту"
                 width="370"
               />
+              <p class="works-top-text">Дизайнерські рішення</p>
             </li>
           </ul>
         </div>
@@ -580,5 +589,16 @@
         </div>
       </div>
     </footer>
+
+    <div class="backdrop is-hidden" data-modal>
+      <div class="modal">
+        <button class="modal-close" type="button" data-modal-close>
+          <svg class="modal-close-icon" width="18px" height="18px">
+            <use href="./images/icons.svg#close-btn"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <script src="./js/modal.js"></script>
   </body>
 </html>

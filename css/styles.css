@@ -28,6 +28,7 @@
     --icon-color: #AFB1B8;
     --hover-icon-color: var(--color-white);
     --footer-social-background-color: rgba(255, 255, 255, 0.1);
+    --tra-cubic: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 h1,
@@ -127,6 +128,7 @@ body {
     color: var(--first-link-color);
     padding-top: 32px;
     padding-bottom: 32px;
+    transition: color 250ms var(--tra-cubic);
 }
 
 .nav-site-link:hover,
@@ -163,6 +165,7 @@ body {
     line-height: 1.14;
     letter-spacing: 0.02em;
     color: var(--color-gray);
+    transition: color 250ms var(--tra-cubic);
 }
 .contacts-link-icon {
     margin-right: 10px;
@@ -170,8 +173,7 @@ body {
 }
 
 .header-contacts-link:hover,
-.header-contacts-link:focus,
-.header-contacts-link:active {
+.header-contacts-link:focus {
     color: var(--color-blue)
 }
 
@@ -215,6 +217,10 @@ body {
     color: var(--color-white);
     margin-bottom: 30px;
 }
+.animate__zoomIn {
+    animation-duration: 2000ms;
+}
+
 .hero-btn {
     min-width: 216px;
     font-weight: 700;
@@ -226,11 +232,11 @@ body {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     border-radius: 4px;
     padding: 10px 32px;
+    transition: background-color 250ms var(--tra-cubic);
 }
 
 .hero-btn:hover,
-.hero-btn:focus,
-.hero-btn:active {
+.hero-btn:focus {
     background-color: var(--color-blue-dark);
 }
 
@@ -281,7 +287,24 @@ body {
     gap: 30px;
 }
 .works-item {
+    position: relative;
     flex-basis: calc((100% - 60px)/3);
+}
+.works-top-text {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.14;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background-color: rgba(47, 48, 58, 0.8);
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /*-----Team------------*/
@@ -342,19 +365,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 250ms var(--tra-cubic);
 }
 .social-icon {
     fill: var(--icon-color);
+    transition: fill 250ms var(--tra-cubic);
 }
 
 .social-link:hover,
-.social-link:focus,
-.social-link:active {
+.social-link:focus {
     background-color: var(--hover-social-background-color);
 }
 .social-link:hover .social-icon,
-.social-link:focus .social-icon,
-.social-link:active .social-icon {
+.social-link:focus .social-icon {
     fill: var(--hover-icon-color)
 }
 
@@ -381,21 +404,21 @@ body {
     border: 1px solid;
     border-color: var(--icon-color);
     border-radius: 4px;
+    transition: border-color 250ms var(--tra-cubic);
 }
 .clients-icon {
     width: 100%;
     height: 100%;
     fill: var(--icon-color);
+    transition: fill 250ms var(--tra-cubic);
 }
 
 .clients-link:hover,
-.clients-link:focus,
-.clients-link:active {
+.clients-link:focus {
     border-color: var(--second-link-color);
 }
 .clients-link:hover .clients-icon,
-.clients-link:focus .clients-icon,
-.clients-link:active .clients-icon {
+.clients-link:focus .clients-icon {
     fill: var(--second-link-color);
 }
 
@@ -437,10 +460,10 @@ body {
 }
 .footer-link {
     color: var(--color-footer-link);
+    transition: color 250ms var(--tra-cubic);
 }
 .footer-link:hover,
-.footer-link:focus,
-.footer-link:active {
+.footer-link:focus {
     color: var(--color-blue);
 }
 
@@ -463,6 +486,61 @@ body {
     fill: var(--hover-icon-color)
 }
 
+/* -------Modal------- */
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: opacity 250ms var(--tra-cubic), visibility 250ms var(--tra-cubic);
+}
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 528px;
+    min-height: 581px;
+    background-color: var(--background-color-white);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition: transform 600ms var(--tra-cubic), opacity 600ms var(--tra-cubic);
+}
+.backdrop.is-hidden .modal {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0;
+}
+
+.modal-close {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+
+    width: 30px;
+    height: 30px;
+
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+}
+.modal-close-icon {
+    fill: var(--color-black);
+    
+}
+
+.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
 /*-----Portfolio--------------*/
 
 .portfolio-filters-list {
@@ -483,10 +561,10 @@ body {
     letter-spacing: 0.03em;
     color: var(--second-btn-color);
     padding: 6px 22px;
+    transition: background-color 250ms var(--tra-cubic), color 250ms var(--tra-cubic), box-shadow 250ms var(--tra-cubic);
 }
 .portfolio-btn:hover,
-.portfolio-btn:focus,
-.portfolio-btn:active {
+.portfolio-btn:focus {
     background-color: var(--hover-btn-color);
     color: var(--first-btn-color);
     box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
@@ -503,12 +581,38 @@ body {
 .portfolio-projects-link {
     text-decoration: none;
     display: block;
+    transition: box-shadow 250ms var(--tra-cubic);
 }
 .portfolio-projects-link:hover,
-.portfolio-projects-link:focus,
-.portfolio-projects-link:active {
+.portfolio-projects-link:focus {
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
 }
+
+.portfolio-top-wrap {
+    position: relative;
+    overflow: hidden;
+}
+.portfolio-top-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.56;
+    letter-spacing: 0.03em;
+    color: var(--color-white);
+    background-color: rgba(33, 150, 243, 0.9);
+    padding: 63px 24px;
+    height: 100%;
+    transform: translateY(100%);
+    transition: transform 250ms var(--tra-cubic);
+}
+
+.portfolio-projects-link:hover .portfolio-top-text {
+    transform: translateY(0);
+}
+
 .portfolio-description {
     padding: 20px 24px;
     border: 1px solid #EEEEEE;
